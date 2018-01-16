@@ -23,13 +23,10 @@ def getSongHash(List):
         print(str(x) + '.' + name)
         x += 1
     z = int(input('请输入需要下载歌曲的序号：'))
-    if (z == 0):
-        return 0
-    else:
-        z -= 1
-        filename = List[z]['FileName'].replace('<em>', '').replace('</em>', '')
-        filehash = List[z]['FileHash']
-        return filehash, filename
+    z -= 1
+    filename = List[z]['FileName'].replace('<em>', '').replace('</em>', '')
+    filehash = List[z]['FileHash']
+    return filehash, filename
 
 
 
@@ -55,23 +52,19 @@ def main():
     print("**        感谢使用酷狗音乐下载器       **")
     print("**                                     **")
     print("*****************************************")
-    keyword = parse.quote(input("请输入需要搜索歌曲名字:"))
-
-    if (int(parse.unquote(keyword)) == 0):
+    if (input('按回车进入搜索，按"0"退出程序！') == 0):
         print('再见！')
         exit()
     else:
+        keyword = parse.quote(input("请输入需要搜索歌曲名字:"))
         list = getSongList(keyword)
         data = getSongHash(list)
-        if (int(data) == 0):
-            main()
+        DownFile(getDownUrl(data[0]), data[1])
+        if os.access((data[1] + '.mp3'), os.F_OK):
+            print('Download File Success!')
         else:
-            DownFile(getDownUrl(data[0]), data[1])
-            if os.access((data[1] + '.mp3'), os.F_OK):
-                print('Download File Success!')
-            else:
-                print('Download File Failure!')
-            print(input('请按任意键退出程序！'))
+            print('Download File Failure!')
+        print(input('请按任意键退出程序！'))
 
 
 main()
