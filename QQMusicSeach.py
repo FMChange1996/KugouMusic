@@ -4,6 +4,7 @@ import os
 from urllib import request, parse
 
 
+# 搜索请求
 def getSongList(name):
     try:
         name = parse.quote(name)
@@ -13,11 +14,6 @@ def getSongList(name):
         return res
     except:
         print('获取列表失败！')
-
-
-def main():
-    return input('请输入要搜索歌曲的名字：')
-
 
 def PrintList(list):
     try:
@@ -84,7 +80,7 @@ def getFile(mid, Filename):
         print('获取文件失败！')
 
 
-data = PrintList(getSongList(main()))
+data = PrintList(getSongList(input('请输入要搜索歌曲的名字：')))
 res = getname(data)
 Mid = res[0]
 Filename = res[1]
