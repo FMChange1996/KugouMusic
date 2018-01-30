@@ -62,11 +62,6 @@ def DownFile(DownUrl, new_name):
 
 def main():
     try:
-        print("*****************************************")
-        print("**                                     **")
-        print("**        感谢使用酷狗音乐下载器       **")
-        print("**                                     **")
-        print("*****************************************")
         keyword = parse.quote(input("请输入需要搜索歌曲名字:"))
         list = getSongList(keyword)
         data = getSongHash(list)
