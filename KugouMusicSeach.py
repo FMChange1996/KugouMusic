@@ -91,4 +91,5 @@ def main():
         print('程序异常！')
 
 
-main()
+if __name__ == '__main__':
+    main()
