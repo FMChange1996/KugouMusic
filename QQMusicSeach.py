@@ -84,8 +84,9 @@ def getFile(mid, Filename):
         print('获取文件失败！')
 
 
-data = PrintList(getSongList(input('请输入要搜索歌曲的名字：')))
-res = getName(data)
-Mid = res[0]
-Filename = res[1]
-getFile(Mid, Filename)
+if __name__ == '__main__':
+    data = PrintList(getSongList(input('请输入要搜索歌曲的名字：')))
+    res = getName(data)
+    Mid = res[0]
+    Filename = res[1]
+    getFile(Mid, Filename)
