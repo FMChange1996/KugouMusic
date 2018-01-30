@@ -13,8 +13,10 @@ def getSongList(name):
         res = json.loads(res)['data']['song']['list']
         return res
     except:
-        print('获取列表失败！')
+        print('请求失败！')
 
+
+# 处理返回的json数据并打印输出列表
 def PrintList(list):
     try:
         x = 1
@@ -41,7 +43,8 @@ def PrintList(list):
         print('获取列表失败！')
 
 
-def getname(list):
+# 分离需要的文件信息
+def getName(list):
     try:
         mid = list.get('mid')
         songname = list.get('title').replace("'", '')
@@ -60,6 +63,7 @@ def getname(list):
         print('获取文件信息！')
 
 
+#从getName中获取的信息进行下载请求，并保存到本地文件
 def getFile(mid, Filename):
     try:
         url = 'https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&uin=0&songmid=' + mid + '&filename=C400' + mid + '.m4a&guid=7861126080'
@@ -81,7 +85,7 @@ def getFile(mid, Filename):
 
 
 data = PrintList(getSongList(input('请输入要搜索歌曲的名字：')))
-res = getname(data)
+res = getName(data)
 Mid = res[0]
 Filename = res[1]
 getFile(Mid, Filename)
